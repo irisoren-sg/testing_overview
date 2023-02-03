@@ -1,0 +1,49 @@
+---
+title: "Testing in packages"
+format: revealjs
+editor: visual
+---
+
+## Setting up the package
+
+-   Ensure that all packages needed are included in DESCRIPTION (and that no library() calls in R scripts
+
+-   Add helpers to NAMESPACE
+
+-   Add testthat to DESCRIPTION suggests:
+
+    testthat (\>= 3.0.0)
+
+    Config/testthat/edition: 3
+
+-   Organise function files so that all functions called within a file are in a single file (path_client() move to client_calls)
+
+-   Files containing non-function R code should not be in R folder (script.R moved to ./demo)
+
+## testthat
+
+-   Package that provides simple testing utilities
+
+-   https://testthat.r-lib.org/
+
+## Testing in packages
+
+-   Ensure that testthat is in DESCRIPTION suggest
+
+-   Create a ./tests and ./tests/testthat/
+
+-   Create ./tests/testthat.R. This is the script that will call all the tests for the package. It refers to the package only and tests are called as per all files in the testthat package
+
+## Writing tests
+
+-   For each .R file in /R, there should be a corresponding test_xyz.R
+-   Tests use the testthat operators (called "Expectations") to return a TRUE/FALSE. E.g.
+    -   expect_equal()
+    -   expect_length()
+    -   expect_class()
+
+## Running tests
+
+-   Load the package environment with dev_tools::load_all()
+-   Run tests dev_tools::test()
+-   Results in console for pass/fail
